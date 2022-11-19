@@ -1,49 +1,37 @@
 import "./App.css";
+import Header from "./components/header";
+import Search from "./components/search";
+import RepoCardList from "./components/repo-card-list";
 
 function App() {
+  const repos = [
+    {
+      title: "repo 1",
+      description: "description 1",
+      stars: "100",
+      forks: "200",
+    },
+    {
+      title: "repo 2",
+      description: "description 2",
+      stars: "300",
+      forks: "400",
+    },
+    {
+      title: "repo 3",
+      description: "description 3",
+      stars: "500",
+      forks: "600",
+    },
+  ];
+
   return (
     <>
-      <header>
-        <div className="content-wrapper">
-          <h1>Welcome to the JSHeroes Bootcamp!</h1>
-        </div>
-        <img className="bear" src="/js-heroes-bear.png" />
-      </header>
+      <Header />
 
       <main>
-        <form className="search-form">
-          <input className="input" />
-          <button className="button">Search</button>
-        </form>
-
-        <ul className="repo-cards">
-          <li className="repo-card">
-            <span className="title">facebook/react</span>
-            <span className="description">placeholder description</span>
-            <section className="footer">
-              <div>Stars: 500</div>
-              <div>Forks: 100</div>
-            </section>
-          </li>
-
-          <li className="repo-card">
-            <span className="title">vuejs/vue</span>
-            <span className="description">placeholder description</span>
-            <section className="footer">
-              <div>Stars: 500</div>
-              <div>Forks: 100</div>
-            </section>
-          </li>
-
-          <li className="repo-card">
-            <span className="title">sveltejs/svelte</span>
-            <span className="description">placeholder description</span>
-            <section className="footer">
-              <div>Stars: 500</div>
-              <div>Forks: 100</div>
-            </section>
-          </li>
-        </ul>
+        <Search />
+        <RepoCardList repos={repos} />
       </main>
     </>
   );
