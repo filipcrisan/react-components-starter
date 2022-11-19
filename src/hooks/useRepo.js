@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 
-export function useRepositories(query) {
-  const [repos, setRepos] = useState([]);
+export function useRepo(owner, repoName) {
+  const [repo, setRepo] = useState(null);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch(`https://api.github.com/search/repositories?q=${query}`)
+    fetch(`https://api.github.com/repos/${owner}/${repoName}`)
       .then((repos) => repos.json())
       .then((response) => {
-        setRepos(response.items);
+        setRepo(response);
       })
       .catch(() => setError("Error ocurred"));
-  }, [query]);
+  }, [owner, repoName]);
 
-  return { repos, error };
+  return { repo, error };
 }
