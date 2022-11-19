@@ -1,4 +1,5 @@
-export function getMostPopularRepos() {
-  return fetch('https://api.github.com/search/repositories?q=stars:>10000')
-    .then(repos => repos.json());
+export function getRepos(query) {
+  return fetch(`https://api.github.com/search/repositories?q=${query}`).then(
+    (repos) => repos.json()
+  );
 }

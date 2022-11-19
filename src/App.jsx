@@ -2,24 +2,23 @@ import "./App.css";
 import Header from "./components/header";
 import Search from "./components/search";
 import RepoCardList from "./components/repo-card-list";
-import { useEffect, useState } from "react";
-import { getMostPopularRepos } from "./services/repo-service";
+import useRepositories from "./hooks/useRepositories";
+import { useState } from "react";
 
 function App() {
-  const [repos, setRepos] = useState([]);
-
-  useEffect(() => {
-    getMostPopularRepos().then((repos) => {
-      setRepos(repos.items);
-    });
-  }, []);
+  const [query, setQuery] = useState("stars:>10000");
+  const repos = useRepositories(query);
 
   return (
     <>
       <Header />
       <main>
-        <Search />
-        <RepoCardList repos={repos} />
+        <Search setQuery={setQuery} />
+        {repos.length === 0 ? (
+          <span>Loading...</span>
+        ) : (
+          <RepoCardList repos={repos} />
+        )}
       </main>
     </>
   );
